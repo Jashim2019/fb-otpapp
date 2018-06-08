@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const twilio = require('./twilio');
-const TwillioPhoneNumber = '+84912930768';
+const TwillioPhoneNumber = '+15005550006';
 
 module.exports = function(req,res) {
     if (!req.body.phone) {

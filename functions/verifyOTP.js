@@ -10,11 +10,11 @@ module.exports = function(req,res) {
     }
 
     const phone = String(req.body.phone).replace(/[^\d]/g,"");
-    const code = 0;
+    var code = parseInt(req.body.code);
     try {
         code = parseInt(req.body.code);
     } catch (err) {
-        return res.status(500).send({ error: err });
+        return res.status(422).send({ error: err, code: code, phone: phone });
     }
 
     admin.auth().getUser(phone)
