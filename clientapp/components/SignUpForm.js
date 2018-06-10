@@ -1,12 +1,23 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {FormInput, FormLabel, Button} from 'react-native-elements';
+import axios from 'axios';
+
+const ROOT_URL = 'https://us-central1-reactnative-otpapp.cloudfunctions.net';
+const CREATE_USER_REQ_URL = `${ROOT_URL}/createUser`;
+const REQUEST_OTP_URL = `${ROOT_URL}/requestOTP`;
 
 export default class SignUpForm extends React.Component {
-	state = {phoen: ''};
+	state = {phone: ''};
 
-	handleSubmit = () => {
-
+	handleSubmit = async () => {
+		try {
+			await axios.post(CREATE_USER_REQ_URL, {phone: this.state.phone});
+			
+			await axios.post(REQUEST_OTP_URL, {phone: this.state.phone});
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	render() {
